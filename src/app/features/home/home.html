@@ -1,0 +1,286 @@
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero">
+  <!-- decorative bg blobs -->
+  <span class="hero-blob hero-blob--tl"></span>
+  <span class="hero-blob hero-blob--br"></span>
+
+  <div class="container hero-inner">
+
+    <!-- Left: copy -->
+    <div class="hero-content">
+      <span class="eyebrow">Welcome to AyurStore</span>
+
+      <h1 class="hero-heading">
+        Providing Best<br>
+        <span class="highlight">Ayurveda Herbs</span>
+      </h1>
+
+      <p class="hero-sub">
+        Discover the ancient wisdom of Ayurveda through our 100% natural,
+        plant-based products. Trusted by thousands of families across India
+        for over a decade.
+      </p>
+
+      <div class="hero-cta">
+        <a routerLink="/products" class="btn-primary-lg">Shop Now</a>
+        <a href="#about" class="btn-outline-lg">Learn More</a>
+      </div>
+    </div>
+
+    <!-- Right: circular hero image -->
+    <div class="hero-visual">
+      <div class="hero-circle-wrap">
+        <span class="ring ring--outer"></span>
+        <span class="ring ring--mid"></span>
+        <div class="hero-circle">
+          <img
+            src="https://warriorsdivine.com/cdn/shop/articles/woman-relaxing-yoga-pose_1024x1024.jpg?v=1708642414"
+            alt="Ayurvedic herbs and spices"
+            width="460" height="460"
+            loading="eager"
+          />
+        </div>
+        <!-- floating herb chips -->
+        <span class="herb-chip herb-chip--1">🌿 Ashwagandha</span>
+        <span class="herb-chip herb-chip--2">🌸 Tulsi</span>
+        <span class="herb-chip herb-chip--3">🍋 Amla</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Category slider strip -->
+<!-- ═══════════════════════════════════════════════
+     FEATURED PRODUCTS
+════════════════════════════════════════════════ -->
+<section class="featured" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Our Products</span>
+      <h2>Extraordinary Medicine For<br><span class="highlight">Ordinary People</span></h2>
+      <p>100% natural, traditionally crafted — trusted by thousands across India.</p>
+    </div>
+
+    <div class="product-grid">
+      @for (product of featuredProducts(); track product.id) {
+        <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
+
+    <div class="view-all">
+      <a routerLink="/products" class="btn-primary-lg">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="container about-inner">
+
+    <div class="about-visual">
+      <div class="about-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop"
+          alt="Ayurvedic treatment"
+          width="520" height="420"
+          loading="lazy"
+        />
+        <div class="about-exp-badge">
+          <span class="about-exp-num">25+</span>
+          <span class="about-exp-lbl">Years of<br>Excellence</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <span class="eyebrow">About Us & Ayurvedic Store</span>
+      <h2>We're Committed to the Most<br><span class="highlight">Powerful Treatment System</span></h2>
+      <p class="about-desc">
+        Rooted in the 5,000-year-old science of Ayurveda, our store brings you
+        authentic herbal formulas crafted by BAMS-certified practitioners.
+        Every product is tested for purity, potency, and safety before it
+        reaches your doorstep.
+      </p>
+
+      <ul class="about-list">
+        <li><span class="check">✔</span> 100% natural, no synthetic additives</li>
+        <li><span class="check">✔</span> Certified organic farms across India</li>
+        <li><span class="check">✔</span> Backed by traditional Ayurvedic texts</li>
+        <li><span class="check">✔</span> ISO-certified manufacturing facility</li>
+      </ul>
+
+      <a routerLink="/products" class="btn-primary-lg">Explore Products</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     STATS BAND
+════════════════════════════════════════════════ -->
+<section class="stats-band">
+  <div class="container stats-inner">
+    @for (stat of stats; track stat.label) {
+      <div class="stat-item">
+        <span class="stat-value">{{ stat.value }}</span>
+        <span class="stat-label">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What We Offer</span>
+      <h2>We Provide <span class="highlight">Premium Class</span> Services</h2>
+      <p>Holistic Ayurvedic solutions crafted to restore balance, vitality and natural well-being.</p>
+    </div>
+
+    <div class="services-grid">
+      @for (s of services; track s.title) {
+        <div class="service-card">
+          <div class="service-icon">{{ s.icon }}</div>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════════════ -->
+<section class="why-us">
+  <div class="container why-inner">
+
+    <div class="why-content">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>A Few Reasons Why People<br><span class="highlight">Prefer Our Services</span></h2>
+      <p class="why-desc">
+        We blend ancient Ayurvedic wisdom with modern quality standards to
+        deliver wellness products you can genuinely trust.
+      </p>
+
+      <div class="reasons-grid">
+        @for (r of reasons; track r.title) {
+          <div class="reason-card">
+            <span class="reason-icon">{{ r.icon }}</span>
+            <div>
+              <h4>{{ r.title }}</h4>
+              <p>{{ r.desc }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="why-visual">
+      <div class="why-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1515586000433-45406d8e6662?w=600&auto=format&fit=crop"
+          alt="Ayurvedic herbs mortar and pestle"
+          width="500" height="480"
+          loading="lazy"
+        />
+        <span class="why-blob"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA / CONTACT
+════════════════════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="container contact-inner">
+    <div class="contact-content">
+      <span class="eyebrow eyebrow--light">Get In Touch</span>
+      <h2>Ready to Start Your<br><span class="highlight-light">Healing Journey?</span></h2>
+      <p>Message us on WhatsApp for personalised Ayurvedic advice, custom wellness plans, and bulk orders.</p>
+      <a
+        href="https://wa.me/+917593016782?text=Hi%20I%20want%20to%20order%20Ayurvedic%20products"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-whatsapp"
+      >
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+    <div class="contact-visual">
+      <img
+        src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&auto=format&fit=crop"
+        alt="Herbal wellness"
+        width="440" height="360"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <span class="footer-logo">🌿 AyurStore</span>
+      <p>Ancient wisdom, modern wellness. India's most trusted Ayurvedic store since 2000.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/products">Products</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul class="footer-contact">
+        <li>📞 +91 75930 16782</li>
+        <li>✉️ hello&#64;ayurstore.in</li>
+        <li>📍 Kerala, India</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© 2026 AyurStore. All Rights Reserved.</span>
+      <span>Made with 🌿 in Kerala, India</span>
+    </div>
+  </div>
+</footer>

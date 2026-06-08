@@ -1,0 +1,119 @@
+<div class="pl-page">
+
+  <!-- ── Page Hero ─────────────────────────────────────── -->
+  <section class="pl-hero">
+    <div class="pl-hero-glow"></div>
+    <div class="container pl-hero-inner">
+      <span class="badge">🌿 Our Collection</span>
+      <h1>All <span class="neon-text">Products</span></h1>
+      <p class="pl-hero-sub">
+        Pure Ayurvedic herbs &amp; wellness products. 100% natural.
+        Delivered across India.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Controls ──────────────────────────────────────── -->
+  <section class="pl-controls">
+    <div class="container pl-controls-inner">
+
+      <!-- Search -->
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search products…"
+          [value]="searchQuery()"
+          (input)="onSearch($any($event.target).value)"
+          aria-label="Search products"
+        />
+        @if (searchQuery()) {
+          <button class="search-clear" (click)="clearSearch()" aria-label="Clear search">✕</button>
+        }
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-wrap">
+        <label class="sort-label" for="pl-sort">Sort:</label>
+        <select id="pl-sort" class="sort-select"
+                (change)="onSort($any($event.target).value)">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="container">
+      <div class="filter-chips" role="group" aria-label="Filter by category">
+        @for (cat of categories(); track cat) {
+          <button
+            class="chip"
+            [class.active]="activeCategory() === cat"
+            (click)="setCategory(cat)"
+          >{{ cat }}</button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Product Grid ───────────────────────────────────── -->
+  <section class="pl-grid-section">
+    <div class="container">
+
+      <!-- Result count -->
+      <p class="result-count">
+        Showing <strong>{{ filtered().length }}</strong>
+        {{ filtered().length === 1 ? 'product' : 'products' }}
+        @if (activeCategory() !== 'All') {
+          in <strong>{{ activeCategory() }}</strong>
+        }
+        @if (searchQuery()) {
+          for "<strong>{{ searchQuery() }}</strong>"
+        }
+      </p>
+
+      <!-- Grid -->
+      @if (filtered().length > 0) {
+        <div class="pl-grid">
+          @for (product of filtered(); track product.id) {
+            <app-product-card [product]="product" />
+          }
+        </div>
+      } @else {
+        <!-- Empty state -->
+        <div class="empty-state">
+          <div class="empty-glow"></div>
+          <span class="empty-icon">🔍</span>
+          <h3>No products found</h3>
+          <p>Try a different search or category.</p>
+          <button class="btn-reset" (click)="clearSearch(); setCategory('All')">
+            Reset Filters
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ─────────────────────────────────────── -->
+  <section class="pl-cta">
+    <div class="container pl-cta-inner">
+      <div class="pl-cta-text">
+        <h2>Need personalised advice?</h2>
+        <p>Chat with our wellness experts for <span class="neon-text">custom Ayurvedic guidance</span> and bulk orders.</p>
+      </div>
+      <a
+        href="https://wa.me/+917593016782?text=Hi%20I%20need%20Ayurvedic%20wellness%20advice"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-whatsapp"
+      >💬 Chat on WhatsApp</a>
+    </div>
+  </section>
+
+</div>

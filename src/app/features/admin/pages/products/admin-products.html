@@ -1,0 +1,145 @@
+<div class="page-header">
+  <h2>{{ mode() === 'list' ? 'Products' : (mode() === 'add' ? 'Add Product' : 'Edit Product') }}</h2>
+  <span class="page-sub">{{ mode() === 'list' ? (filtered().length + ' products') : 'Fill in the details below' }}</span>
+</div>
+
+<!-- ── LIST MODE ────────────────────────────────────────────── -->
+@if (mode() === 'list') {
+  <div class="toolbar">
+    <input type="text" placeholder="Search by name or category…"
+           [value]="search()" (input)="search.set($any($event.target).value)" class="search-box" />
+    <button class="btn-primary" (click)="openAdd()">+ Add Product</button>
+  </div>
+
+  <div class="section-card">
+    @if (filtered().length === 0) {
+      <p class="empty-msg">No products found. Click "Add Product" to get started.</p>
+    } @else {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Badge</th>
+              <th>Active</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of filtered(); track p.id) {
+              <tr>
+                <td>
+                  <img [src]="p.images[0]" [alt]="p.name" class="thumb" />
+                </td>
+                <td><strong>{{ p.name }}</strong><br><small>{{ p.shortDescription }}</small></td>
+                <td><span class="badge-src manual">{{ p.category }}</span></td>
+                <td>₹{{ p.price.toLocaleString('en-IN') }}</td>
+                <td>{{ p.badge || '—' }}</td>
+                <td>
+                  <span class="badge-status" [style.background]="p.isActive ? '#10b981' : '#9ca3af'">
+                    {{ p.isActive ? 'Active' : 'Hidden' }}
+                  </span>
+                </td>
+                <td>
+                  <div class="action-row">
+                    <button class="btn-edit" (click)="openEdit(p)">Edit</button>
+                    <button class="btn-danger" (click)="delete(p.id)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+}
+
+<!-- ── ADD / EDIT FORM ──────────────────────────────────────── -->
+@if (mode() === 'add' || mode() === 'edit') {
+  <div class="section-card">
+    <form (ngSubmit)="save()" class="product-form">
+
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Product Name *</label>
+          <input type="text" [ngModel]="form().name"
+                 (ngModelChange)="form.update(f => ({...f, name: $event}))"
+                 name="name" placeholder="e.g. Ashwagandha Root Powder" required />
+        </div>
+
+        <div class="form-group">
+          <label>Category *</label>
+          <select [ngModel]="form().category"
+                  (ngModelChange)="form.update(f => ({...f, category: $event}))"
+                  name="category" required>
+            <option value="" disabled>Select category</option>
+            @for (cat of productSvc.categories(); track cat) {
+              <option [value]="cat">{{ cat }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Price (₹) *</label>
+          <input type="number" [ngModel]="form().price"
+                 (ngModelChange)="form.update(f => ({...f, price: +$event}))"
+                 name="price" min="0" placeholder="299" required />
+        </div>
+
+        <div class="form-group">
+          <label>Badge (optional)</label>
+          <input type="text" [ngModel]="form().badge"
+                 (ngModelChange)="form.update(f => ({...f, badge: $event}))"
+                 name="badge" placeholder="Best Seller / New / Hot" />
+        </div>
+
+        <div class="form-group">
+          <label>Active</label>
+          <select [ngModel]="form().isActive"
+                  (ngModelChange)="form.update(f => ({...f, isActive: $event === 'true' || $event === true}))"
+                  name="isActive">
+            <option [value]="true">Yes – show on site</option>
+            <option [value]="false">No – hide from site</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Short Description *</label>
+          <input type="text" [ngModel]="form().shortDescription"
+                 (ngModelChange)="form.update(f => ({...f, shortDescription: $event}))"
+                 name="shortDesc" placeholder="One-line product summary" />
+        </div>
+
+        <div class="form-group full">
+          <label>Full Description</label>
+          <textarea [ngModel]="form().description"
+                    (ngModelChange)="form.update(f => ({...f, description: $event}))"
+                    name="desc" placeholder="Detailed product description…"></textarea>
+        </div>
+
+        <div class="form-group full">
+          <label>Product Image</label>
+          <input type="file" accept="image/*" (change)="onFileChange($event)" class="file-input" />
+          @if (imageUploading()) {
+            <p class="upload-hint">Uploading image to Supabase Storage…</p>
+          }
+          @if (form().images[0]) {
+            <img [src]="form().images[0]" alt="preview" class="img-preview" />
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="isSaving()">
+          {{ isSaving() ? 'Saving…' : (mode() === 'add' ? 'Add Product' : 'Save Changes') }}
+        </button>
+        <button type="button" class="btn-secondary" (click)="cancel()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+}

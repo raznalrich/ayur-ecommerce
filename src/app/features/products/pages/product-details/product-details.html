@@ -1,0 +1,39 @@
+<section class="detail-page">
+  <div class="container">
+
+    @if (notFound()) {
+      <div class="not-found">
+        <h2>Product not found</h2>
+        <a routerLink="/products" class="btn-back">← Back to Products</a>
+      </div>
+    }
+
+    @if (product(); as p) {
+      <a routerLink="/products" class="btn-back">← Back to Products</a>
+
+      <div class="detail-grid">
+        <div class="detail-image">
+          <img [src]="p.images[0]" [alt]="p.name"
+               width="500" height="500" loading="lazy">
+        </div>
+
+        <div class="detail-info">
+          @if (p.badge) {
+            <span class="badge">{{ p.badge }}</span>
+          }
+          <span class="category">{{ p.category }}</span>
+          <h1>{{ p.name }}</h1>
+          <p class="description">{{ p.description }}</p>
+          <div class="price">₹{{ p.price.toLocaleString('en-IN') }}</div>
+
+          <button class="btn-buy" (click)="buyNow()">
+            💬 Buy on WhatsApp
+          </button>
+
+          <p class="hint">Clicking Buy opens WhatsApp with product details pre-filled.</p>
+        </div>
+      </div>
+    }
+
+  </div>
+</section>
