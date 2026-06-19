@@ -16,36 +16,51 @@ export class Home {
   featuredProducts = computed(() => this.productService.products().slice(0, 4));
   isLoading = this.productService.isLoading;
 
+brandScroll = [
+  { name: 'Toyota',        logo: '●', color: '#0B5FFF' },
+  { name: 'BMW',           logo: '●', color: '#0B5FFF' },
+  { name: 'Mercedes-Benz', logo: '●', color: '#0B5FFF' },
+  { name: 'Audi',          logo: '●', color: '#0B5FFF' },
+  { name: 'Honda',         logo: '●', color: '#0B5FFF' },
+  { name: 'Hyundai',       logo: '●', color: '#0B5FFF' },
+  { name: 'Kia',           logo: '●', color: '#0B5FFF' },
+  { name: 'Ford',          logo: '●', color: '#0B5FFF' },
+  { name: 'Volkswagen',    logo: '●', color: '#0B5FFF' },
+  { name: 'Tesla',         logo: '●', color: '#0B5FFF' },
+  { name: 'Mahindra',      logo: '●', color: '#0B5FFF' },
+  { name: 'Tata Motors',   logo: '●', color: '#0B5FFF' },
+];
+
   categories = [
-    { label: 'Immunity',         img: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Digestive Health', img: 'https://images.unsplash.com/photo-1611800065908-233b597db552?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Skin Care',        img: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Hair Care',        img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Stress Relief',    img: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Detox & Cleanse',  img: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Joint Health',     img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=300&auto=format&fit=crop' },
-    { label: 'Women Wellness',   img: 'https://images.unsplash.com/photo-1515586000433-45406d8e6662?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Floor Mats',         img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Seat Covers', img: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Audio Systems',        img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Dashboard Accessories',        img: 'https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Car Care Products',    img: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Lighting & LEDs',  img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Phone Holders',     img: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=300&h=300&auto=format&fit=crop' },
+    { label: 'Exterior Styling',   img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=300&h=300&auto=format&fit=crop' },
   ];
 
   stats = [
-    { value: '80+',  label: 'Consultations' },
-    { value: '120+', label: 'Treatments' },
-    { value: '140+', label: 'Products' },
-    { value: '100+', label: 'Coaching Clients' },
+    { value: '500+',  label: 'Products' },
+    { value: '50K+', label: 'Happy Customers' },
+    { value: '300+', label: 'Car Models Supported' },
+    { value: '15+', label: 'Years Experience' },
   ];
 
   services = [
-    { icon: '🌱', title: 'Herbal Supplements',  desc: 'Science-backed herbal supplements crafted from potent Ayurvedic roots and leaves.' },
-    { icon: '💆', title: 'Wellness Therapies',  desc: 'Holistic body and mind therapies guided by certified Ayurvedic practitioners.' },
-    { icon: '🚚', title: 'Doorstep Delivery',   desc: 'Safe, eco-friendly packaging delivered pan-India in 5–7 business days.' },
-    { icon: '🌸', title: 'Organic Herbs',        desc: 'Freshly sourced certified-organic herbs with full traceability to their origin.' },
+    { icon: '🚗', title: 'Interior Accessories',  desc: 'Premium seat covers, floor mats, and dashboard accessories to upgrade your car interior.' },
+    { icon: '💡', title: 'Electronics & Tech',  desc: 'Latest car electronics including audio systems, dash cams, and smart accessories.' },
+    { icon: '🚚', title: 'Fast Delivery',   desc: 'Quick and reliable shipping with careful packaging to ensure products arrive safely.' },
+    { icon: '✨', title: 'Exterior Styling',        desc: 'Body kits, spoilers, chrome accessories, and LED lights to make your car stand out.' },
   ];
 
   reasons = [
-    { icon: '🌿', title: '100% Organic',       desc: 'Every ingredient is certified organic. No pesticides, no chemicals.' },
-    { icon: '👨‍⚕️', title: 'Certified Doctors', desc: 'Formulas developed and reviewed by BAMS-certified Ayurvedic physicians.' },
-    { icon: '💊', title: 'Medicine Free',       desc: 'Natural healing without dependence on synthetic pharmaceutical drugs.' },
-    { icon: '🛡️', title: 'Problem Care',        desc: 'Targeted formulations addressing specific health concerns at the root.' },
+    { icon: '⭐', title: 'Premium Quality',       desc: 'All products are made from high-quality materials built to last.' },
+    { icon: '✅', title: 'Perfect Fit', desc: 'Universal and custom-fit options available for all major car models.' },
+    { icon: '💰', title: 'Best Prices',       desc: 'Competitive pricing with regular discounts and special offers.' },
+    { icon: '🛑', title: 'Easy Returns',        desc: '30-day hassle-free return policy. Your satisfaction is guaranteed.' },
   ];
 
 }

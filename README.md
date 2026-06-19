@@ -1,4 +1,6 @@
-# AyurEcommerce
+# AutoGear - Car Accessories E-commerce
+
+A modern e-commerce platform for premium car accessories, built with Angular 21.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.13.
 

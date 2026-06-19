@@ -115,18 +115,28 @@ export class AdminProductService {
     }
   }
 
-  async uploadImage(file: File): Promise<string | null> {
-    const ext = file.name.split('.').pop() || 'jpg';
-    const path = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await this.supabase.client.storage
-      .from('product-images')
-      .upload(path, file, { upsert: false });
-    if (error) return null;
-    const { data } = this.supabase.client.storage
-      .from('product-images')
-      .getPublicUrl(path);
-    return data.publicUrl;
+ async uploadImage(file: File): Promise<string> {
+  const ext = file.name.split('.').pop() || 'jpg';
+  const path = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+
+  const { error } = await this.supabase.client.storage
+    .from('product-images')
+    .upload(path, file, {
+      upsert: false,
+      contentType: file.type
+    });
+
+  if (error) {
+    console.error('Supabase upload error:', error);
+    throw new Error(error.message);
   }
+
+  const { data } = this.supabase.client.storage
+    .from('product-images')
+    .getPublicUrl(path);
+
+  return data.publicUrl;
+}
 
   private _refreshCategories() {
     const cats = [...new Set(this._products().map(p => p.category))].filter(Boolean);

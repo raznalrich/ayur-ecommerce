@@ -80,11 +80,16 @@ export class AdminProducts {
         if (!file) return;
         this.imageUploading.set(true);
         const url = await this.productSvc.uploadImage(file);
+        try{
         if (url) {
             this.form.update(f => ({ ...f, images: [url] }));
-        } else {
-            alert('Image upload failed. Check that the \'product-images\' bucket exists and is public in Supabase.');
-        }
-        this.imageUploading.set(false);
+        } }
+        catch (e) {
+    console.error('Upload failed:', e);
+    alert('Image upload failed: ' + (e as Error).message);
+  } finally {
+    this.imageUploading.set(false);
+  }
+        // this.imageUploading.set(false);
     }
 }

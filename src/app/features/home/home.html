@@ -2,56 +2,105 @@
      HERO
 ════════════════════════════════════════════════ -->
 <section class="hero">
-  <!-- decorative bg blobs -->
-  <span class="hero-blob hero-blob--tl"></span>
-  <span class="hero-blob hero-blob--br"></span>
-
   <div class="container hero-inner">
-
-    <!-- Left: copy -->
+    
+    <!-- Left: Content -->
     <div class="hero-content">
-      <span class="eyebrow">Welcome to AyurStore</span>
-
-      <h1 class="hero-heading">
-        Providing Best<br>
-        <span class="highlight">Ayurveda Herbs</span>
+      <span class="hero-eyebrow">WELCOME TO BUDDYSS</span>
+      
+      <h1 class="hero-title">
+        <span class="hero-title-line">Premium</span>
+        <span class="hero-title-line">Quality</span>
+        <span class="hero-title-line hero-title-blue">Car Accessories</span>
       </h1>
-
-      <p class="hero-sub">
-        Discover the ancient wisdom of Ayurveda through our 100% natural,
-        plant-based products. Trusted by thousands of families across India
-        for over a decade.
+      
+      <p class="hero-description">
+        Upgrade your driving experience with our extensive collection of
+        high-quality car accessories. From interior upgrades to exterior styling,
+        we have everything to make your ride perfect.
       </p>
-
-      <div class="hero-cta">
-        <a routerLink="/products" class="btn-primary-lg">Shop Now</a>
-        <a href="#about" class="btn-outline-lg">Learn More</a>
+      
+      <div class="hero-buttons">
+        <a routerLink="/products" class="hero-btn hero-btn-primary">Shop Now</a>
+        <a href="#about" class="hero-btn hero-btn-outline">Learn More</a>
       </div>
     </div>
-
-    <!-- Right: circular hero image -->
-    <div class="hero-visual">
-      <div class="hero-circle-wrap">
-        <span class="ring ring--outer"></span>
-        <span class="ring ring--mid"></span>
-        <div class="hero-circle">
-          <img
-            src="https://warriorsdivine.com/cdn/shop/articles/woman-relaxing-yoga-pose_1024x1024.jpg?v=1708642414"
-            alt="Ayurvedic herbs and spices"
-            width="460" height="460"
-            loading="eager"
-          />
+    
+    <!-- Right: Car with Floating Labels -->
+    <div class="hero-car-section">
+      <div class="hero-car-wrapper">
+        <!-- Car Image -->
+        <img 
+          src="assets/images/car.png" 
+          alt="Luxury sports car" 
+          class="hero-car-image"
+        />
+        
+        <!-- Floating Accessory Labels with Arrows -->
+        <div class="accessory-label accessory-label-1">
+          <span class="accessory-text">🚗 Floor Mats</span>
+          <svg class="accessory-arrow" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 25 Q 40 10, 90 25" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          </svg>
         </div>
-        <!-- floating herb chips -->
-        <span class="herb-chip herb-chip--1">🌿 Ashwagandha</span>
-        <span class="herb-chip herb-chip--2">🌸 Tulsi</span>
-        <span class="herb-chip herb-chip--3">🍋 Amla</span>
+        
+        <div class="accessory-label accessory-label-2">
+          <span class="accessory-text">💡 LED Lighting</span>
+          <svg class="accessory-arrow" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 40 10 Q 50 40, 40 70" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          </svg>
+        </div>
+        
+      
+        
+        <div class="accessory-label accessory-label-4">
+          <span class="accessory-text">⚙️ Custom Rims</span>
+          <svg class="accessory-arrow accessory-arrow-right" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 90 30 Q 60 20, 10 30" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#arrowhead-left)"/>
+          </svg>
+        </div>
+        
+        <div class="accessory-label accessory-label-5">
+          <span class="accessory-text">💺 Seat Covers</span>
+          <svg class="accessory-arrow" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 25 Q 40 35, 90 25" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          </svg>
+        </div>
+        
+        <div class="accessory-label accessory-label-6">
+          <span class="accessory-text">🏁 Performance/Tuning</span>
+          <svg class="accessory-arrow accessory-arrow-right" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 90 25 Q 60 35, 10 25" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#arrowhead-left)"/>
+          </svg>
+        </div>
+        
+        <!-- Arrow markers -->
+        <svg width="0" height="0">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="currentColor" />
+            </marker>
+            <marker id="arrowhead-left" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+              <polygon points="10 0, 0 3, 10 6" fill="currentColor" />
+            </marker>
+          </defs>
+        </svg>
       </div>
     </div>
 
+    
   </div>
-
-  <!-- Category slider strip -->
+      <!-- Brand scroll strip -->
+  <div class="brand-strip-section">
+    <div class="brand-strip-track">
+      @for (b of brandScroll; track b.name) {
+        <span class="brand-strip-item" [style.color]="b.color">{{ b.logo }} {{ b.name }}</span>
+      }
+      @for (b of brandScroll; track b.name + '_dup') {
+        <span class="brand-strip-item" [style.color]="b.color">{{ b.logo }} {{ b.name }}</span>
+      }
+    </div>
+  </div>
 <!-- ═══════════════════════════════════════════════
      FEATURED PRODUCTS
 ════════════════════════════════════════════════ -->
@@ -59,8 +108,8 @@
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Our Products</span>
-      <h2>Extraordinary Medicine For<br><span class="highlight">Ordinary People</span></h2>
-      <p>100% natural, traditionally crafted — trusted by thousands across India.</p>
+      <h2>Premium Accessories For<br><span class="highlight">Your Vehicle</span></h2>
+      <p>High-quality, durable car accessories designed to enhance comfort, style, and performance.</p>
     </div>
 
     <div class="product-grid">
@@ -84,33 +133,33 @@
     <div class="about-visual">
       <div class="about-img-wrap">
         <img
-          src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop"
-          alt="Ayurvedic treatment"
+          src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&auto=format&fit=crop"
+          alt="Car interior accessories"
           width="520" height="420"
           loading="lazy"
         />
         <div class="about-exp-badge">
-          <span class="about-exp-num">25+</span>
+          <span class="about-exp-num">15+</span>
           <span class="about-exp-lbl">Years of<br>Excellence</span>
         </div>
       </div>
     </div>
 
     <div class="about-content">
-      <span class="eyebrow">About Us & Ayurvedic Store</span>
-      <h2>We're Committed to the Most<br><span class="highlight">Powerful Treatment System</span></h2>
+      <span class="eyebrow">About Us & AutoGear Store</span>
+      <h2>We're Committed to the Most<br><span class="highlight">Premium Car Accessories</span></h2>
       <p class="about-desc">
-        Rooted in the 5,000-year-old science of Ayurveda, our store brings you
-        authentic herbal formulas crafted by BAMS-certified practitioners.
-        Every product is tested for purity, potency, and safety before it
-        reaches your doorstep.
+        With over 15 years of experience in the automotive accessories industry,
+        AutoGear brings you a curated collection of premium products. Every item
+        is carefully selected for quality, durability, and perfect fit to enhance
+        your driving experience.
       </p>
 
       <ul class="about-list">
-        <li><span class="check">✔</span> 100% natural, no synthetic additives</li>
-        <li><span class="check">✔</span> Certified organic farms across India</li>
-        <li><span class="check">✔</span> Backed by traditional Ayurvedic texts</li>
-        <li><span class="check">✔</span> ISO-certified manufacturing facility</li>
+        <li><span class="check">✔</span> Premium quality materials and build</li>
+        <li><span class="check">✔</span> Perfect fit for all major car models</li>
+        <li><span class="check">✔</span> Backed by manufacturer warranties</li>
+        <li><span class="check">✔</span> Fast shipping and easy returns</li>
       </ul>
 
       <a routerLink="/products" class="btn-primary-lg">Explore Products</a>
@@ -141,7 +190,7 @@
     <div class="section-header">
       <span class="eyebrow">What We Offer</span>
       <h2>We Provide <span class="highlight">Premium Class</span> Services</h2>
-      <p>Holistic Ayurvedic solutions crafted to restore balance, vitality and natural well-being.</p>
+      <p>Complete automotive solutions to enhance your vehicle's comfort, performance, and style.</p>
     </div>
 
     <div class="services-grid">
@@ -166,10 +215,10 @@
 
     <div class="why-content">
       <span class="eyebrow">Why Choose Us</span>
-      <h2>A Few Reasons Why People<br><span class="highlight">Prefer Our Services</span></h2>
+      <h2>A Few Reasons Why People<br><span class="highlight">Trust AutoGear</span></h2>
       <p class="why-desc">
-        We blend ancient Ayurvedic wisdom with modern quality standards to
-        deliver wellness products you can genuinely trust.
+        We combine premium quality products with exceptional customer service
+        to deliver the best car accessories shopping experience.
       </p>
 
       <div class="reasons-grid">
@@ -188,8 +237,8 @@
     <div class="why-visual">
       <div class="why-img-wrap">
         <img
-          src="https://images.unsplash.com/photo-1515586000433-45406d8e6662?w=600&auto=format&fit=crop"
-          alt="Ayurvedic herbs mortar and pestle"
+          src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&auto=format&fit=crop"
+          alt="Premium car accessories collection"
           width="500" height="480"
           loading="lazy"
         />
@@ -207,10 +256,10 @@
   <div class="container contact-inner">
     <div class="contact-content">
       <span class="eyebrow eyebrow--light">Get In Touch</span>
-      <h2>Ready to Start Your<br><span class="highlight-light">Healing Journey?</span></h2>
-      <p>Message us on WhatsApp for personalised Ayurvedic advice, custom wellness plans, and bulk orders.</p>
+      <h2>Ready to Upgrade<br><span class="highlight-light">Your Vehicle?</span></h2>
+      <p>Message us on WhatsApp for product recommendations, bulk orders, and installation guidance.</p>
       <a
-        href="https://wa.me/+917593016782?text=Hi%20I%20want%20to%20order%20Ayurvedic%20products"
+        href="https://wa.me/+917593016782?text=Hi%20I%20want%20to%20order%20car%20accessories"
         target="_blank"
         rel="noopener noreferrer"
         class="btn-whatsapp"
@@ -220,8 +269,8 @@
     </div>
     <div class="contact-visual">
       <img
-        src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&auto=format&fit=crop"
-        alt="Herbal wellness"
+        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&auto=format&fit=crop"
+        alt="Car accessories"
         width="440" height="360"
         loading="lazy"
       />
@@ -236,8 +285,8 @@
   <div class="container footer-inner">
 
     <div class="footer-brand">
-      <span class="footer-logo">🌿 AyurStore</span>
-      <p>Ancient wisdom, modern wellness. India's most trusted Ayurvedic store since 2000.</p>
+      <span class="footer-logo">🚗 AutoGear</span>
+      <p>Premium car accessories for the modern driver. Your trusted partner since 2010.</p>
       <div class="footer-social">
         <a href="#" aria-label="Facebook">f</a>
         <a href="#" aria-label="Twitter">𝕏</a>
@@ -270,7 +319,7 @@
       <h4>Contact Us</h4>
       <ul class="footer-contact">
         <li>📞 +91 75930 16782</li>
-        <li>✉️ hello&#64;ayurstore.in</li>
+        <li>✉️ hello&#64;autogear.in</li>
         <li>📍 Kerala, India</li>
       </ul>
     </div>
@@ -279,8 +328,8 @@
 
   <div class="footer-bottom">
     <div class="container">
-      <span>© 2026 AyurStore. All Rights Reserved.</span>
-      <span>Made with 🌿 in Kerala, India</span>
+      <span>© 2026 Buddyss. All Rights Reserved.</span>
+      <span>LumiTeQ Solutions</span>
     </div>
   </div>
 </footer>
