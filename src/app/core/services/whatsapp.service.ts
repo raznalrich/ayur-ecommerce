@@ -10,7 +10,7 @@ export class WhatsappService {
 
     createBuyLink(product: Product): string {
         const productUrl = window.location.origin + '/products/' + product.slug;
-        const msg = `Hi! I want to buy this Ayurvedic product:\n\n` +
+        const msg = `Hi! I want to buy this Car accessory product:\n\n` +
             `*` + product.name + `*\n` +
             `Price: Rs.` + product.price.toLocaleString('en-IN') + `\n\nProduct Link: ` + productUrl;
         return `https://wa.me/` + this.phone + `?text=` + encodeURIComponent(msg);
